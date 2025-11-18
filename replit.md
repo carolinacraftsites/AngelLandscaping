@@ -14,12 +14,12 @@ Angel Landscaping LLC is a professional landscaping and home improvement service
 
 ### December 2024 - Initial Build
 - **Complete Website Implementation**: Built all four pages (Home, Services, About, Contact) with responsive design
-- **Contact Form with Validation**: Implemented fully functional contact form with:
-  - React Hook Form integration with Zod schema validation
-  - Field-level error messages for name, email, phone, and message
-  - Backend API endpoint for form submissions (`POST /api/contact`)
-  - Success/error toast notifications
-  - Form reset after successful submission
+- **Contact Page**: Simplified contact page displaying:
+  - Phone: 828-713-4546 with click-to-call functionality
+  - Email: akandrade1989@gmail.com with click-to-email functionality
+  - Service area: Western North Carolina
+  - Owner information: Angel Cruz
+  - Note: Contact form removed per user request
 - **SEO Optimization**: Added unique meta titles and descriptions for each page using react-helmet-async
 - **Professional Design**: 
   - Generated AI hero image featuring professional landscaping work
@@ -29,11 +29,10 @@ Angel Landscaping LLC is a professional landscaping and home improvement service
   - Hover states and elevation effects following design guidelines
 - **Comprehensive Testing**: End-to-end tests covering:
   - Navigation across all pages
-  - Form validation (empty submission and successful submission)
   - Mobile menu functionality
   - Click-to-call/email links
   - SEO meta tag verification
-- **Data Storage**: In-memory storage implementation for contact form submissions (MVP - submissions persist only during server runtime)
+- **Backend API**: Contact submission endpoint remains available at `POST /api/contact` (unused, kept for potential future use)
 
 ## User Preferences
 
@@ -49,7 +48,7 @@ Preferred communication style: Simple, everyday language.
 - Home (Hero + Service Preview)
 - Services (Complete service catalog)
 - About (Owner profile and business information)
-- Contact (Contact form)
+- Contact (Contact information display)
 
 **UI Component System**: shadcn/ui components (Radix UI primitives) with custom Tailwind CSS styling following the "new-york" theme variant. Components are fully accessible and use CSS variables for theming.
 
