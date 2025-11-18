@@ -1,3 +1,4 @@
+import { Helmet } from "react-helmet-async";
 import Hero from "@/components/Hero";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -39,8 +40,13 @@ const featuredServices = [
 
 export default function Home() {
   return (
-    <div className="min-h-screen">
-      <Hero />
+    <>
+      <Helmet>
+        <title>Angel Landscaping LLC - Professional Landscaping & Home Improvement in Western NC</title>
+        <meta name="description" content="Angel Landscaping LLC provides professional landscaping, stonework, masonry, and home improvement services in Western North Carolina. Free estimates, fully insured. Call 828-713-4546 today." />
+      </Helmet>
+      <div className="min-h-screen">
+        <Hero />
       
       <section className="py-16 md:py-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -128,6 +134,7 @@ export default function Home() {
           </div>
         </div>
       </section>
-    </div>
+      </div>
+    </>
   );
 }

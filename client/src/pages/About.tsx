@@ -1,18 +1,24 @@
+import { Helmet } from "react-helmet-async";
 import { Card, CardContent } from "@/components/ui/card";
 import { Quote, ShieldCheck, Users, Award } from "lucide-react";
 
 export default function About() {
   return (
-    <div className="min-h-screen py-16 md:py-24">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <h1 className="text-4xl font-bold tracking-tight mb-4" data-testid="text-about-title">
-            About Us
-          </h1>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto" data-testid="text-about-subtitle">
-            Quality workmanship and reliable service for Western North Carolina
-          </p>
-        </div>
+    <>
+      <Helmet>
+        <title>About Us - Angel Landscaping LLC | Angel Cruz, Owner</title>
+        <meta name="description" content="Learn about Angel Cruz and Angel Landscaping LLC. Years of hands-on experience in landscaping, masonry, and home renovation. Known for reliable communication and quality work in Western NC." />
+      </Helmet>
+      <div className="min-h-screen py-16 md:py-24">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h1 className="text-4xl font-bold tracking-tight mb-4" data-testid="text-about-title">
+              About Us
+            </h1>
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto" data-testid="text-about-subtitle">
+              Quality workmanship and reliable service for Western North Carolina
+            </p>
+          </div>
         
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-16">
           <div>
@@ -76,6 +82,7 @@ export default function About() {
           </Card>
         </div>
       </div>
-    </div>
+      </div>
+    </>
   );
 }

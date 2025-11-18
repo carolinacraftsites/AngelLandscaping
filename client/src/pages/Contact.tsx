@@ -1,41 +1,42 @@
-import { useState } from "react";
+import { Helmet } from "react-helmet-async";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
 import { useMutation } from "@tanstack/react-query";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Badge } from "@/components/ui/badge";
 import { Phone, Mail, MapPin } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { apiRequest } from "@/lib/queryClient";
-import type { InsertContactSubmission } from "@shared/schema";
+import { insertContactSubmissionSchema, type InsertContactSubmission } from "@shared/schema";
 
 export default function Contact() {
   const { toast } = useToast();
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    phone: "",
-    message: ""
+  
+  const form = useForm<InsertContactSubmission>({
+    resolver: zodResolver(insertContactSubmissionSchema),
+    defaultValues: {
+      name: "",
+      email: "",
+      phone: "",
+      message: ""
+    }
   });
 
   const submitMutation = useMutation({
     mutationFn: async (data: InsertContactSubmission) => {
-      return await apiRequest("/api/contact", {
-        method: "POST",
-        body: JSON.stringify(data),
-        headers: {
-          "Content-Type": "application/json"
-        }
-      });
+      const res = await apiRequest("POST", "/api/contact", data);
+      return await res.json();
     },
     onSuccess: () => {
       toast({
         title: "Message sent!",
         description: "We'll get back to you as soon as possible.",
       });
-      setFormData({ name: "", email: "", phone: "", message: "" });
+      form.reset();
     },
     onError: (error: any) => {
       toast({
@@ -46,29 +47,26 @@ export default function Contact() {
     }
   });
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    submitMutation.mutate(formData);
-  };
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setFormData(prev => ({
-      ...prev,
-      [e.target.name]: e.target.value
-    }));
+  const handleSubmit = (data: InsertContactSubmission) => {
+    submitMutation.mutate(data);
   };
 
   return (
-    <div className="min-h-screen py-16 md:py-24">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <h1 className="text-4xl font-bold tracking-tight mb-4" data-testid="text-contact-title">
-            Contact Us
-          </h1>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto" data-testid="text-contact-subtitle">
-            Get in touch for a free estimate on your next project
-          </p>
-        </div>
+    <>
+      <Helmet>
+        <title>Contact Us - Angel Landscaping LLC | Free Estimates</title>
+        <meta name="description" content="Contact Angel Landscaping LLC for a free estimate. Call 828-713-4546 or fill out our contact form. Serving Western North Carolina with professional landscaping and home improvement services." />
+      </Helmet>
+      <div className="min-h-screen py-16 md:py-24">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h1 className="text-4xl font-bold tracking-tight mb-4" data-testid="text-contact-title">
+              Contact Us
+            </h1>
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto" data-testid="text-contact-subtitle">
+              Get in touch for a free estimate on your next project
+            </p>
+          </div>
         
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
           <div>
@@ -144,76 +142,99 @@ export default function Contact() {
               <CardDescription>Fill out the form below and we'll get back to you soon</CardDescription>
             </CardHeader>
             <CardContent>
-              <form onSubmit={handleSubmit} className="space-y-6">
-                <div className="space-y-2">
-                  <Label htmlFor="name">Name *</Label>
-                  <Input
-                    id="name"
+              <Form {...form}>
+                <form onSubmit={form.handleSubmit(handleSubmit)} className="space-y-6">
+                  <FormField
+                    control={form.control}
                     name="name"
-                    value={formData.name}
-                    onChange={handleChange}
-                    required
-                    placeholder="Your name"
-                    data-testid="input-name"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Name *</FormLabel>
+                        <FormControl>
+                          <Input
+                            {...field}
+                            placeholder="Your name"
+                            data-testid="input-name"
+                          />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
                   />
-                </div>
-                
-                <div className="space-y-2">
-                  <Label htmlFor="email">Email *</Label>
-                  <Input
-                    id="email"
+                  
+                  <FormField
+                    control={form.control}
                     name="email"
-                    type="email"
-                    value={formData.email}
-                    onChange={handleChange}
-                    required
-                    placeholder="your.email@example.com"
-                    data-testid="input-email"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Email *</FormLabel>
+                        <FormControl>
+                          <Input
+                            {...field}
+                            type="email"
+                            placeholder="your.email@example.com"
+                            data-testid="input-email"
+                          />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
                   />
-                </div>
-                
-                <div className="space-y-2">
-                  <Label htmlFor="phone">Phone *</Label>
-                  <Input
-                    id="phone"
+                  
+                  <FormField
+                    control={form.control}
                     name="phone"
-                    type="tel"
-                    value={formData.phone}
-                    onChange={handleChange}
-                    required
-                    placeholder="(828) 123-4567"
-                    data-testid="input-phone"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Phone *</FormLabel>
+                        <FormControl>
+                          <Input
+                            {...field}
+                            type="tel"
+                            placeholder="(828) 123-4567"
+                            data-testid="input-phone"
+                          />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
                   />
-                </div>
-                
-                <div className="space-y-2">
-                  <Label htmlFor="message">Message *</Label>
-                  <Textarea
-                    id="message"
+                  
+                  <FormField
+                    control={form.control}
                     name="message"
-                    value={formData.message}
-                    onChange={handleChange}
-                    required
-                    placeholder="Tell us about your project..."
-                    rows={6}
-                    data-testid="input-message"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Message *</FormLabel>
+                        <FormControl>
+                          <Textarea
+                            {...field}
+                            placeholder="Tell us about your project..."
+                            rows={6}
+                            data-testid="input-message"
+                          />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
                   />
-                </div>
-                
-                <Button 
-                  type="submit" 
-                  size="lg" 
-                  className="w-full"
-                  disabled={submitMutation.isPending}
-                  data-testid="button-submit"
-                >
-                  {submitMutation.isPending ? "Sending..." : "Send Message"}
-                </Button>
-              </form>
+                  
+                  <Button 
+                    type="submit" 
+                    size="lg" 
+                    className="w-full"
+                    disabled={submitMutation.isPending}
+                    data-testid="button-submit"
+                  >
+                    {submitMutation.isPending ? "Sending..." : "Send Message"}
+                  </Button>
+                </form>
+              </Form>
             </CardContent>
           </Card>
         </div>
       </div>
-    </div>
+      </div>
+    </>
   );
 }

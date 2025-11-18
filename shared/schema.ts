@@ -26,6 +26,11 @@ export const insertUserSchema = createInsertSchema(users).pick({
 export const insertContactSubmissionSchema = createInsertSchema(contactSubmissions).omit({
   id: true,
   createdAt: true,
+}).extend({
+  name: z.string().min(1, "Name is required"),
+  email: z.string().email("Please enter a valid email address"),
+  phone: z.string().min(1, "Phone number is required"),
+  message: z.string().min(10, "Please provide at least 10 characters in your message")
 });
 
 export type InsertUser = z.infer<typeof insertUserSchema>;

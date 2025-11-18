@@ -35,18 +35,16 @@ export default function Hero() {
             size="lg" 
             className="w-full sm:w-auto backdrop-blur-sm bg-primary/90 hover:bg-primary border border-primary-border"
             asChild
-            data-testid="button-estimate-hero"
           >
-            <Link href="/contact">Request a Free Estimate</Link>
+            <Link href="/contact" data-testid="button-hero-estimate">Request a Free Estimate</Link>
           </Button>
           <Button 
             size="lg" 
             variant="outline" 
             className="w-full sm:w-auto backdrop-blur-sm bg-white/10 border-white/30 text-white hover:bg-white/20"
             asChild
-            data-testid="button-call-hero"
           >
-            <a href="tel:828-713-4546">
+            <a href="tel:828-713-4546" data-testid="button-hero-call">
               <Phone className="mr-2 h-5 w-5" />
               Call 828-713-4546
             </a>

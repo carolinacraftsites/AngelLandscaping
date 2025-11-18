@@ -38,11 +38,13 @@ export default function Header() {
             <Link
               key={item.name}
               href={item.href}
-              data-testid={`link-${item.name.toLowerCase()}`}
             >
-              <span className={`text-sm font-semibold leading-6 hover:text-primary transition-colors ${location === item.href ? 'text-primary' : 'text-foreground'}`}>
+              <a 
+                className={`text-sm font-semibold leading-6 hover:text-primary transition-colors ${location === item.href ? 'text-primary' : 'text-foreground'}`}
+                data-testid={`link-nav-${item.name.toLowerCase()}`}
+              >
                 {item.name}
-              </span>
+              </a>
             </Link>
           ))}
         </div>

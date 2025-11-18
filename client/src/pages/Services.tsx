@@ -1,3 +1,4 @@
+import { Helmet } from "react-helmet-async";
 import ServiceCard from "@/components/ServiceCard";
 import { Scissors, Leaf, Droplets, Wind, Trees, Fence, Home, Paintbrush, Hammer, Wrench, Sparkles, PanelTop, Triangle, BrickWall, Blocks } from "lucide-react";
 
@@ -104,16 +105,21 @@ const constructionServices = [
 
 export default function Services() {
   return (
-    <div className="min-h-screen py-16 md:py-24">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <h1 className="text-4xl font-bold tracking-tight mb-4" data-testid="text-services-title">
-            Our Services
-          </h1>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto" data-testid="text-services-description">
-            Comprehensive landscaping and home improvement solutions tailored to your needs
-          </p>
-        </div>
+    <>
+      <Helmet>
+        <title>Our Services - Angel Landscaping LLC | Landscaping & Home Improvement</title>
+        <meta name="description" content="Explore our comprehensive landscaping and home improvement services including lawn care, stonework, masonry, roofing, painting, and more. Serving Western North Carolina with quality workmanship." />
+      </Helmet>
+      <div className="min-h-screen py-16 md:py-24">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h1 className="text-4xl font-bold tracking-tight mb-4" data-testid="text-services-title">
+              Our Services
+            </h1>
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto" data-testid="text-services-description">
+              Comprehensive landscaping and home improvement solutions tailored to your needs
+            </p>
+          </div>
         
         <div className="mb-16">
           <div className="flex items-center mb-8">
@@ -157,6 +163,7 @@ export default function Services() {
           </div>
         </div>
       </div>
-    </div>
+      </div>
+    </>
   );
 }
