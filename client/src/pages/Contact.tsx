@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useMutation } from "@tanstack/react-query";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -7,6 +8,8 @@ import { Textarea } from "@/components/ui/textarea";
 import { Badge } from "@/components/ui/badge";
 import { Phone, Mail, MapPin } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import { apiRequest } from "@/lib/queryClient";
+import type { InsertContactSubmission } from "@shared/schema";
 
 export default function Contact() {
   const { toast } = useToast();
@@ -16,23 +19,36 @@ export default function Contact() {
     phone: "",
     message: ""
   });
-  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-    
-    // TODO: Remove mock functionality - replace with actual API call
-    console.log('Contact form submitted:', formData);
-    
-    setTimeout(() => {
+  const submitMutation = useMutation({
+    mutationFn: async (data: InsertContactSubmission) => {
+      return await apiRequest("/api/contact", {
+        method: "POST",
+        body: JSON.stringify(data),
+        headers: {
+          "Content-Type": "application/json"
+        }
+      });
+    },
+    onSuccess: () => {
       toast({
         title: "Message sent!",
         description: "We'll get back to you as soon as possible.",
       });
       setFormData({ name: "", email: "", phone: "", message: "" });
-      setIsSubmitting(false);
-    }, 1000);
+    },
+    onError: (error: any) => {
+      toast({
+        title: "Error",
+        description: error.message || "Failed to send message. Please try again.",
+        variant: "destructive"
+      });
+    }
+  });
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    submitMutation.mutate(formData);
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -188,10 +204,10 @@ export default function Contact() {
                   type="submit" 
                   size="lg" 
                   className="w-full"
-                  disabled={isSubmitting}
+                  disabled={submitMutation.isPending}
                   data-testid="button-submit"
                 >
-                  {isSubmitting ? "Sending..." : "Send Message"}
+                  {submitMutation.isPending ? "Sending..." : "Send Message"}
                 </Button>
               </form>
             </CardContent>
