@@ -1,0 +1,5 @@
+{
+  "rootDirectory": "client",
+  "buildCommand": "npm install && npm run build",
+  "outputDirectory": "dist/public"
+}
