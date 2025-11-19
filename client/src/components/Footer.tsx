@@ -48,6 +48,17 @@ export default function Footer() {
           <p className="text-sm text-muted-foreground" data-testid="text-copyright">
             © {new Date().getFullYear()} Angel Landscaping LLC. All rights reserved.
           </p>
+          <p className="text-xs text-muted-foreground mt-2">
+            Created by{" "}
+            <a
+              href="https://carolinacraftsites.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-primary transition-colors underline"
+            >
+              Carolina Craft Sites
+            </a>
+          </p>
         </div>
       </div>
     </footer>
