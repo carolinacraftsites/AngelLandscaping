@@ -55,7 +55,7 @@ export default function Home() {
               Professional Service You Can Trust
             </h2>
             <p className="text-lg text-muted-foreground" data-testid="text-intro-description">
-              Angel Landscaping LLC provides professional landscaping, stonework, and home improvement services throughout Western North Carolina. We deliver reliable workmanship and friendly service at fair prices.
+              From landscape design to stonework and home repairs, we provide durable, high-quality results for homeowners throughout Western North Carolina.
             </p>
           </div>
           
