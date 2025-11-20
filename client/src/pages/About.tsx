@@ -20,17 +20,6 @@ export default function About() {
             </p>
           </div>
         
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-16">
-          <div>
-            <Card className="overflow-hidden">
-              <CardContent className="p-0">
-                <div className="aspect-[4/5] bg-muted flex items-center justify-center">
-                  <Users className="h-24 w-24 text-muted-foreground/30" />
-                </div>
-              </CardContent>
-            </Card>
-          </div>
-          
           <div>
             <h2 className="text-3xl font-bold mb-6" data-testid="text-owner-name">
               Angel Cruz
@@ -43,7 +32,7 @@ export default function About() {
               <CardContent className="p-6">
                 <Quote className="h-8 w-8 text-primary mb-4" />
                 <p className="text-lg italic text-foreground" data-testid="text-quote">
-                  "Known for reliable communication, quality work, and attention to detail."
+                  "Angel and his team are always timely, professional, and deliver excellent work."
                 </p>
               </CardContent>
             </Card>
