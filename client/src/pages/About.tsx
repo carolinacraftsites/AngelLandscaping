@@ -46,7 +46,7 @@ export default function About() {
               reliable communication, quality work, and attention to detail.
             </p>
 
-            <Card className="bg-primary/5 border-primary/20">
+            <Card className="bg-primary/5 border-primary/20 mb-16">
               <CardContent className="p-6">
                 <Quote className="h-8 w-8 text-primary mb-4" />
                 <p
