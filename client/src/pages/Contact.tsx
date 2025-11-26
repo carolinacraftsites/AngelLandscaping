@@ -8,7 +8,7 @@ export default function Contact() {
     <>
       <Helmet>
         <title>Contact Us - Angel Landscaping LLC | Free Estimates</title>
-        <meta name="description" content="Contact Angel Landscaping LLC for a free estimate. Call 828-713-4546 or email akandrade1989@gmail.com. Serving Western North Carolina with professional landscaping and home improvement services." />
+        <meta name="description" content="Contact Angel Landscaping LLC for a free estimate. Call 828-713-4546 or email AngelandscapingLLC@outlook.com. Serving Western North Carolina with professional landscaping and home improvement services." />
       </Helmet>
       <div className="min-h-screen py-16 md:py-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -50,7 +50,7 @@ export default function Contact() {
                   <div>
                     <h3 className="font-semibold mb-1">Email</h3>
                     <a 
-                      href="mailto:akandrade1989@gmail.com" 
+                      href="mailto:AngelandscapingLLC@outlook.com" 
                       className="text-primary hover:underline break-all"
                       data-testid="link-email"
                     >

@@ -26,7 +26,7 @@ export default function Footer() {
                 828-713-4546
               </a>
               <a 
-                href="mailto:akandrade1989@gmail.com" 
+                href="mailto:AngelandscapingLLC@outlook.com" 
                 className="flex items-center text-sm text-muted-foreground hover:text-primary transition-colors"
                 data-testid="link-footer-email"
               >

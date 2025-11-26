@@ -16,7 +16,7 @@ Angel Landscaping LLC is a professional landscaping and home improvement service
 - **Complete Website Implementation**: Built all four pages (Home, Services, About, Contact) with responsive design
 - **Contact Page**: Simplified contact page displaying:
   - Phone: 828-713-4546 with click-to-call functionality
-  - Email: akandrade1989@gmail.com with click-to-email functionality
+  - Email: AngelandscapingLLC@outlook.com with click-to-email functionality
   - Service area: Western North Carolina
   - Owner information: Angel Cruz
   - Note: Contact form removed per user request
