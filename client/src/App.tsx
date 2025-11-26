@@ -1,4 +1,4 @@
-import { Switch, Route } from "wouter";
+import { Switch, Route, Router } from "wouter";
 import { HelmetProvider } from "react-helmet-async";
 import { queryClient } from "./lib/queryClient";
 import { QueryClientProvider } from "@tanstack/react-query";
@@ -12,7 +12,10 @@ import About from "@/pages/About";
 import Contact from "@/pages/Contact";
 import NotFound from "@/pages/not-found";
 
-function Router() {
+// Get base path from document base or default to "/"
+const base = document.querySelector("base")?.getAttribute("href") ?? "/";
+
+function Routes() {
   return (
     <Switch>
       <Route path="/" component={Home} />
@@ -29,14 +32,16 @@ function App() {
     <HelmetProvider>
       <QueryClientProvider client={queryClient}>
         <TooltipProvider>
-          <div className="flex flex-col min-h-screen">
-            <Header />
-            <main className="flex-1">
-              <Router />
-            </main>
-            <Footer />
-          </div>
-          <Toaster />
+          <Router base={base}>
+            <div className="flex flex-col min-h-screen">
+              <Header />
+              <main className="flex-1">
+                <Routes />
+              </main>
+              <Footer />
+            </div>
+            <Toaster />
+          </Router>
         </TooltipProvider>
       </QueryClientProvider>
     </HelmetProvider>
