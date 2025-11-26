@@ -12,8 +12,8 @@ import About from "@/pages/About";
 import Contact from "@/pages/Contact";
 import NotFound from "@/pages/not-found";
 
-// Get base path from document base or default to "/"
-const base = document.querySelector("base")?.getAttribute("href") ?? "/";
+// Get base path from Vite's import.meta.env.BASE_URL
+const base = import.meta.env.BASE_URL;
 
 function Routes() {
   return (
