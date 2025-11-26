@@ -31,7 +31,7 @@ export default function Footer() {
                 data-testid="link-footer-email"
               >
                 <Mail className="mr-2 h-4 w-4" />
-                akandrade1989@gmail.com
+                AngelandscapingLLC@outlook.com
               </a>
             </div>
           </div>

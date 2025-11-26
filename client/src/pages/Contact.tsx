@@ -54,7 +54,7 @@ export default function Contact() {
                       className="text-primary hover:underline break-all"
                       data-testid="link-email"
                     >
-                      akandrade1989@gmail.com
+                      AngelandscapingLLC@outlook.com
                     </a>
                   </div>
                 </div>
