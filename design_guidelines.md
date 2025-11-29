@@ -156,3 +156,4 @@ All images should showcase completed work, well-maintained properties, natural o
 - Optimized image formats (WebP)
 - Minimal animation (fade-in on scroll only)
 - Fast form submission feedback
+
